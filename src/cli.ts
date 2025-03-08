@@ -54,7 +54,6 @@ export class Cli {
   private async _initValidate() {
     this._command
       .command('validate')
-
       .description('Validate a Rjson file')
       .option('-i, --input <file>', 'Input Rljson file')
       .option('-o, --output <file>', 'Validation result json')
@@ -71,7 +70,7 @@ export class Cli {
           if (!fs.existsSync(options.input)) {
             this._exit(
               2,
-              Error(`Error: Input file not found:  ${blue(options.input)}`),
+              Error(`Error: Input file not found: ${blue(options.input)}`),
             );
             return;
           }
