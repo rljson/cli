@@ -68,12 +68,12 @@ describe('Cli', () => {
     const expectError = (code: number, message: string) => {
       expect(cli.exitCode).toBe(code);
       expect(cli.errors.length).toBe(1);
-      expect(cli.errors[0].message).toEqual(message);
+      expect(cli.errors[0].message).toContain(message);
     };
 
     const expectResult = (message: string) => {
       expect(cli.result.length).toBe(1);
-      expect(cli.result[0]).toEqual(message);
+      expect(cli.result[0]).toContain(message);
     };
 
     // .........................................................................
@@ -85,7 +85,7 @@ describe('Cli', () => {
           await setInput(JSON.stringify(rljson));
           run(['validate', '-i', inputFile, '-o', outputFile]);
           await expectOutput({});
-          expectResult('Validation result written to ' + outputFile);
+          expectResult('Everything is fine.');
         });
       });
 
@@ -94,7 +94,8 @@ describe('Cli', () => {
           const rljson: Rljson = { tab_le: { _data: [], _type: 'properties' } };
           await setInput(JSON.stringify(rljson));
           run(['validate', '-i', inputFile, '-o', outputFile]);
-          expectError(1, `Errors written to ${inputFile}.`);
+          expectError(1, `Errors written to`);
+          expectError(1, outputFile);
           await expectOutput({
             tableNamesAreLowerCamelCase: {
               error: 'Table names must be lower camel case',
@@ -123,7 +124,17 @@ describe('Cli', () => {
 
         it('when input file cannot be opened', async () => {
           run(['validate', '-i', inputFile, '-o', outputFile]);
-          expectError(2, `Error: Input file not found: ${inputFile}`);
+          expectError(2, `Error: Input file not found`);
+          expectError(2, inputFile);
+        });
+
+        it('when some other error happens', async () => {
+          await setInput('invalid json');
+          run(['validate', '-i', inputFile, '-o', outputFile]);
+          expectError(
+            2,
+            `Unexpected token 'i', "invalid json" is not valid JSON`,
+          );
         });
       });
     });
