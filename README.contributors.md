@@ -4,15 +4,15 @@
 
 Check out [./README.trouble.md](./README.trouble.md)
 
-Report issues as <https://github.com/rljson/template/issues>
+Report issues as <https://github.com/rljson/cli/issues>
 
 ## Check out
 
 ```bash
 mkdir rljson
 cd rljson
-git clone https://github.com/rljson/template.git
-cd template
+git clone https://github.com/rljson/cli.git
+cd cli
 ```
 
 ## Install dependencies
@@ -101,3 +101,22 @@ npm run updateGoldens
 ```
 
 Then, check the changes in the `test/goldens` folder.
+
+## Add production dependencies
+
+In the following commands replace `xyz` by your dependency:
+
+```bash
+npm install xyz --save-peer
+```
+
+Open `vite.config.mts`
+
+Locate `rollupOptions`
+
+Locate `external`
+
+Add `xyz`
+
+By adding dependencies to `peerDependencies` we make sure that they are not
+bundled when we are building our package as an library

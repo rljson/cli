@@ -1,3 +1,43 @@
-Template.example
-  Returns an instance of the template.
-    {}
+Cli.example
+  Returns an instance of the cli.
+    {
+  "_command": {
+    "_events": {},
+    "_eventsCount": 0,
+    "commands": [],
+    "options": [],
+    "parent": null,
+    "_allowUnknownOption": false,
+    "_allowExcessArguments": false,
+    "registeredArguments": [],
+    "_args": [],
+    "args": [],
+    "rawArgs": [],
+    "processedArgs": [],
+    "_scriptPath": null,
+    "_name": "",
+    "_optionValues": {},
+    "_optionValueSources": {},
+    "_storeOptionsAsProperties": false,
+    "_actionHandler": null,
+    "_executableHandler": false,
+    "_executableFile": null,
+    "_executableDir": null,
+    "_defaultCommandName": null,
+    "_exitCallback": null,
+    "_aliases": [],
+    "_combineFlagAndOptionalValue": true,
+    "_description": "",
+    "_summary": "",
+    "_enablePositionalOptions": false,
+    "_passThroughOptions": false,
+    "_lifeCycleHooks": {},
+    "_showHelpAfterError": false,
+    "_showSuggestionAfterError": true,
+    "_savedState": null,
+    "_outputConfiguration": {},
+    "_hidden": false,
+    "_helpConfiguration": {}
+  },
+  "_exitCode": 0
+}

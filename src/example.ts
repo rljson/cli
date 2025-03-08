@@ -4,8 +4,9 @@
 // Use of this source code is governed by terms that can be
 // found in the LICENSE file in the root of this package.
 
-// import { Template } from '@rljson/template';
-import { Template } from './template.ts';
+// import { Cli } from '@rljson/cli';
+import { Cli } from './cli.ts';
+
 
 export const example = () => {
   // Print methods
@@ -14,9 +15,9 @@ export const example = () => {
   const h2 = (text: string) => l(`  ${text.split('\n')}`);
   const p = (text: string) => l(`    ${text}`);
 
-  h1('Template.example');
-  h2('Returns an instance of the template.');
-  const example = Template.example;
+  h1('Cli.example');
+  h2('Returns an instance of the cli.');
+  const example = Cli.example;
   p(JSON.stringify(example, null, 2));
 };
 

@@ -356,14 +356,14 @@
 
   // Psi Header Config
 
-  "psi-header.templates": [
+  "psi-header.clis": [
     {
       "language": "*",
-      "template": []
+      "cli": []
     },
     {
       "language": "xml",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -373,7 +373,7 @@
     },
     {
       "language": "html",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -383,7 +383,7 @@
     },
     {
       "language": "typescript",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -393,7 +393,7 @@
     },
     {
       "language": "javascript",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -403,7 +403,7 @@
     },
     {
       "language": "scss",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -413,7 +413,7 @@
     },
     {
       "language": "dart",
-      "template": [
+      "cli": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -502,7 +502,7 @@
   "psi-header.config": {
     "forceToTop": true
   },
-  "dart.analyzeAngularTemplates": false,
+  "dart.analyzeAngularClis": false,
   "html.format.enable": true,
   "cSpell.language": "en-US",
   "cSpell.files": ["./**/*.md"],
