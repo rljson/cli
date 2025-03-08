@@ -6,6 +6,7 @@
 
 import { validate } from '@rljson/validate';
 
+import { blue } from 'chalk';
 import { Command } from 'commander';
 import * as fs from 'fs';
 
@@ -39,10 +40,7 @@ export class Cli {
   // Private
   // ######################
 
-  private readonly _command = new Command().exitOverride((err) => {
-    this._exitCode = err.exitCode;
-    throw err;
-  });
+  private readonly _command = new Command();
 
   private _initCommands(): void {
     this._initValidate();
@@ -73,7 +71,7 @@ export class Cli {
           if (!fs.existsSync(options.input)) {
             this._exit(
               2,
-              Error(`Error: Input file not found: ${options.input}`),
+              Error(`Error: Input file not found:  ${blue(options.input)}`),
             );
             return;
           }
@@ -87,11 +85,14 @@ export class Cli {
 
           const noErrors = Object.keys(result).length === 0;
           if (noErrors) {
-            this._result.push(`Validation result written to ${options.output}`);
+            this._result.push(`Everything is fine.`);
             this._exit(0, undefined);
             return;
           } else {
-            this._exit(1, new Error(`Errors written to ${options.input}.`));
+            this._exit(
+              1,
+              new Error(`Errors written to: ${blue(options.output)}`),
+            );
             return;
           }
         } catch (error) {

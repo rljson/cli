@@ -52,6 +52,7 @@
     "@rljson/hash": "^0.0.3",
     "@rljson/json": "^0.0.2",
     "@rljson/validate": "^0.0.3",
+    "chalk": "^4.1.2",
     "commander": "^13.1.0"
   }
 }
