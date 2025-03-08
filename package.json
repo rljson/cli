@@ -58,5 +58,13 @@
     "@rljson/validate": "^0.0.3",
     "chalk": "^4.1.2",
     "commander": "^13.1.0"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
