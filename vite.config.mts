@@ -21,6 +21,8 @@ export default defineConfig({
         '@rljson/format',
         '@rljson/json',
         '@rljson/hash',
+        '@rljson/validate',
+        'commander',
         // Add all peer depencies from package.json here
       ],
       output: {

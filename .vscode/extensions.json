@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "angular.ng-template",
+    "angular.ng-cli",
     "ryanluker.vscode-coverage-gutters",
     "dbaeumer.vscode-eslint",
     "bierner.markdown-preview-github-styles",

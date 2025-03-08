@@ -1,7 +1,9 @@
-# @rljson/template
+# @rljson/cli
 
-Todo: Add description here
+The Rljson command line interface
 
-## Example
+## Install
 
-[src/example.ts](src/example.ts)
+```bash
+
+```

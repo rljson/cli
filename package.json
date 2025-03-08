@@ -1,9 +1,9 @@
 {
-  "name": "@rljson/template",
+  "name": "@rljson/cli",
   "version": "0.0.1",
-  "description": "template rljson files",
-  "homepage": "https://github.com/rljson/template",
-  "bugs": "https://github.com/rljson/template/issues",
+  "description": "cli rljson files",
+  "homepage": "https://github.com/rljson/cli",
+  "bugs": "https://github.com/rljson/cli/issues",
   "private": false,
   "license": "MIT",
   "engines": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rljson/template.git"
+    "url": "git+https://github.com/rljson/cli.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -50,6 +50,8 @@
   "peerDependencies": {
     "@rljson/format": "^0.0.1",
     "@rljson/hash": "^0.0.3",
-    "@rljson/json": "^0.0.2"
+    "@rljson/json": "^0.0.2",
+    "@rljson/validate": "^0.0.3",
+    "commander": "^13.1.0"
   }
 }

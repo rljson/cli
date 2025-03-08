@@ -13,7 +13,6 @@ Todo: Add description here
 
 import { h } from '@rljson/hash';
 
-
 export const example = () => {
   // Print methods
   const l = console.log;
@@ -21,13 +20,12 @@ export const example = () => {
   const h2 = (text: string) => l(`  ${text.split('\n')}`);
   const p = (text: string) => l(`    ${text}`);
 
-  h1('Template.example');
-  h2('Returns an instance of the template.');
-  const example = Template.example;
+  h1('Cli.example');
+  h2('Returns an instance of the cli.');
+  const example = Cli.example;
   p(JSON.stringify(example, null, 2));
 };
 
 // Comment out to run via »npx vite-node src/example.ts«:
 // example();
-
 ```
