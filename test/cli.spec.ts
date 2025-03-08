@@ -6,12 +6,12 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { Template } from '../src/template';
+import { Cli } from '../src/cli';
 
 
-describe('Template', () => {
-  it('should validate a template', () => {
-    const template = Template.example;
-    expect(template).toBeDefined();
+describe('Cli', () => {
+  it('should validate a cli', () => {
+    const cli = Cli.example;
+    expect(cli).toBeDefined();
   });
 });

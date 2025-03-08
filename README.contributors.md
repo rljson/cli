@@ -4,15 +4,15 @@
 
 Check out [./README.trouble.md](./README.trouble.md)
 
-Report issues as <https://github.com/rljson/template/issues>
+Report issues as <https://github.com/rljson/cli/issues>
 
 ## Check out
 
 ```bash
 mkdir rljson
 cd rljson
-git clone https://github.com/rljson/template.git
-cd template
+git clone https://github.com/rljson/cli.git
+cd cli
 ```
 
 ## Install dependencies

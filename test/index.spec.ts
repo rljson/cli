@@ -8,9 +8,10 @@ import { describe, expect, it } from 'vitest';
 
 import * as index from '../src/index';
 
+
 describe('index', () => {
-  it('should export Template', () => {
+  it('should export Cli', () => {
     const keys = Object.keys(index);
-    expect(keys).toEqual(['Template']);
+    expect(keys).toEqual(['Cli']);
   });
 });
