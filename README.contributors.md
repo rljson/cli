@@ -15,6 +15,20 @@ git clone https://github.com/rljson/cli.git
 cd cli
 ```
 
+## Install pnpm
+
+Windows:
+
+```bash
+corepack enable pnpm
+```
+
+Mac:
+
+```bash
+sudo corepack enable pnpm
+```
+
 ## Install dependencies
 
 ```bash
@@ -40,20 +54,20 @@ npm run build
 3. Compile TypeScript:
 
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 4. Perform a dry-run of the publish process:
 
    ```bash
-   npm publish --access=public --dry-run
+   pnpm publish --access=public --dry-run
    ```
 
 5. Review the uploaded changes.
 6. Publish the package:
 
    ```bash
-   npm publish --access=public
+   pnpm publish --access=public
    ```
 
 ## Architecture
