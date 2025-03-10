@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "angular.ng-cli",
+    "angular.ng-template",
     "ryanluker.vscode-coverage-gutters",
     "dbaeumer.vscode-eslint",
     "bierner.markdown-preview-github-styles",
@@ -19,6 +19,7 @@
     "luanpotter.dart-import",
     "mokkapps.jasmine-test-selector",
     "antfu.vite",
-    "vitest.explorer"
+    "vitest.explorer",
+    "github.vscode-github-actions"
   ]
 }
