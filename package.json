@@ -1,6 +1,7 @@
 {
   "name": "@rljson/cli",
   "version": "0.0.2",
+  "packageManager": "pnpm@10.6.2",
   "description": "The RLJSON command line interface",
   "homepage": "https://github.com/rljson/cli",
   "bugs": "https://github.com/rljson/cli/issues",
