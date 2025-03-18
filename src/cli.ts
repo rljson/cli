@@ -6,9 +6,11 @@
 
 import { validate } from '@rljson/validate';
 
-import { blue } from 'chalk';
+import chalk from 'chalk';
 import { Command } from 'commander';
 import * as fs from 'fs';
+
+const { blue } = chalk;
 
 // .............................................................................
 export class Cli {
@@ -17,10 +19,10 @@ export class Cli {
     return new Cli();
   }
 
-  exec(): number {
+  async exec(): Promise<number> {
     this._initCommands();
     this._readCommandLineArgs();
-    this._command.parse(process.argv);
+    await this._command.parseAsync(process.argv);
     return this._exitCode;
   }
 
@@ -78,7 +80,7 @@ export class Cli {
           const data = fs.readFileSync(options.input, 'utf8');
           const json = JSON.parse(data);
 
-          const result = validate(json);
+          const result = await validate(json);
 
           fs.writeFileSync(options.output, JSON.stringify(result, null, 2));
 
