@@ -4,8 +4,8 @@
 // Use of this source code is governed by terms that can be
 // found in the LICENSE file in the root of this package.
 
-import { Rljson } from '@rljson/format';
 import { Json } from '@rljson/json';
+import { Rljson } from '@rljson/rljson';
 
 import * as fs from 'fs';
 import { mkdir, readFile, rm, writeFile } from 'fs/promises';
