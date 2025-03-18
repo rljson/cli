@@ -60,9 +60,9 @@ describe('Cli', () => {
       expect(output).toEqual(content);
     };
 
-    const run = (args: string[]) => {
+    const run = async (args: string[]) => {
       process.argv = ['node', 'cli.js', ...args];
-      cli.exec();
+      await cli.exec();
     };
 
     const expectError = (code: number, message: string) => {
@@ -83,7 +83,7 @@ describe('Cli', () => {
         it('when input file is valid', async () => {
           const rljson: Rljson = { table: { _data: [], _type: 'properties' } };
           await setInput(JSON.stringify(rljson));
-          run(['validate', '-i', inputFile, '-o', outputFile]);
+          await run(['validate', '-i', inputFile, '-o', outputFile]);
           await expectOutput({});
           expectResult('Everything is fine.');
         });
@@ -93,13 +93,16 @@ describe('Cli', () => {
         it('when --input file is invalid', async () => {
           const rljson: Rljson = { tab_le: { _data: [], _type: 'properties' } };
           await setInput(JSON.stringify(rljson));
-          run(['validate', '-i', inputFile, '-o', outputFile]);
+          await run(['validate', '-i', inputFile, '-o', outputFile]);
           expectError(1, `Errors written to`);
           expectError(1, outputFile);
           await expectOutput({
-            tableNamesAreLowerCamelCase: {
-              error: 'Table names must be lower camel case',
-              invalidTableNames: ['tab_le'],
+            base: {
+              hasErrors: true,
+              tableNamesNotLowerCamelCase: {
+                error: 'Table names must be lower camel case',
+                invalidTableNames: ['tab_le'],
+              },
             },
           });
         });
@@ -107,7 +110,7 @@ describe('Cli', () => {
 
       describe('2', async () => {
         it('when --input is missing', async () => {
-          run(['validate', '-o', outputFile]);
+          await run(['validate', '-o', outputFile]);
           expectError(
             2,
             'Error: Both input and output files must be specified.',
@@ -115,7 +118,7 @@ describe('Cli', () => {
         });
 
         it('when --output is missing', async () => {
-          run(['validate', '-i', inputFile]);
+          await run(['validate', '-i', inputFile]);
           expect(cli.exitCode).toBe(2);
           expect(cli.errors.map((e) => e.message)).toEqual([
             'Error: Both input and output files must be specified.',
@@ -123,14 +126,14 @@ describe('Cli', () => {
         });
 
         it('when input file cannot be opened', async () => {
-          run(['validate', '-i', inputFile, '-o', outputFile]);
+          await run(['validate', '-i', inputFile, '-o', outputFile]);
           expectError(2, `Error: Input file not found`);
           expectError(2, inputFile);
         });
 
         it('when some other error happens', async () => {
           await setInput('invalid json');
-          run(['validate', '-i', inputFile, '-o', outputFile]);
+          await run(['validate', '-i', inputFile, '-o', outputFile]);
           expectError(
             2,
             `Unexpected token 'i', "invalid json" is not valid JSON`,

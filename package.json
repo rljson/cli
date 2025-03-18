@@ -55,8 +55,8 @@
   "dependencies": {
     "@rljson/hash": "^0.0.12",
     "@rljson/json": "^0.0.18",
-    "@rljson/rljson": "^0.0.17",
-    "@rljson/validate": "^0.0.7",
+    "@rljson/rljson": "^0.0.18",
+    "@rljson/validate": "^0.0.8",
     "chalk": "^5.4.1",
     "commander": "^13.1.0"
   },
