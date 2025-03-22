@@ -125,7 +125,6 @@
 
   "javascript.preferences.quoteStyle": "single",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "javascript.referencesCodeLens.enabled": true,
 
   // #############
   // Typescript
@@ -133,7 +132,6 @@
 
   "typescript.tsserver.watchOptions": "vscode",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.referencesCodeLens.enabled": true,
   "typescript.workspaceSymbols.excludeLibrarySymbols": false,
   "typescript.tsserver.experimental.enableProjectDiagnostics": false,
   "typescript.tsserver.enableRegionDiagnostics": true,
@@ -356,14 +354,14 @@
 
   // Psi Header Config
 
-  "psi-header.clis": [
+  "psi-header.templates": [
     {
       "language": "*",
-      "cli": []
+      "template": []
     },
     {
       "language": "xml",
-      "cli": [
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -373,7 +371,7 @@
     },
     {
       "language": "html",
-      "cli": [
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -383,7 +381,7 @@
     },
     {
       "language": "typescript",
-      "cli": [
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -393,7 +391,7 @@
     },
     {
       "language": "javascript",
-      "cli": [
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -403,7 +401,7 @@
     },
     {
       "language": "scss",
-      "cli": [
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -413,7 +411,17 @@
     },
     {
       "language": "dart",
-      "cli": [
+      "template": [
+        "@license",
+        "Copyright (c) <<year>> Rljson",
+        "",
+        "Use of this source code is governed by terms that can be",
+        "found in the LICENSE file in the root of this package."
+      ]
+    },
+    {
+      "language": "markdown",
+      "template": [
         "@license",
         "Copyright (c) <<year>> Rljson",
         "",
@@ -502,23 +510,29 @@
   "psi-header.config": {
     "forceToTop": true
   },
-  "dart.analyzeAngularClis": false,
+  "dart.analyzeAngularTemplates": false,
   "html.format.enable": true,
   "cSpell.language": "en-US",
   "cSpell.files": ["./**/*.md"],
   "cSpell.words": [
     "Avao",
+    "Bswz",
     "Bxft",
+    "CIOV",
+    "Cwqokzu",
     "elif",
+    "FJOCQ",
     "Gatzsche",
     "goldens",
     "Hfad",
     "Lojb",
+    "npmjs",
     "Ntik",
     "Rljson",
     "sirh",
     "TEHY",
     "upate",
     "yrqcs"
-  ]
+  ],
+  "editor.codeLens": false
 }
