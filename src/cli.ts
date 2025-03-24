@@ -55,6 +55,7 @@ export class Cli {
 
   private async _initValidate() {
     this._command
+      .name('rljson')
       .command('validate')
       .description('Validate a Rjson file')
       .option('-i, --input <file>', 'Input Rljson file')
