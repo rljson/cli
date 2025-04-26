@@ -81,7 +81,7 @@ describe('Cli', () => {
     describe('exits with', () => {
       describe('0', () => {
         it('when input file is valid', async () => {
-          const rljson: Rljson = { table: { _data: [], _type: 'properties' } };
+          const rljson: Rljson = { table: { _data: [], _type: 'ingredients' } };
           await setInput(JSON.stringify(rljson));
           await run(['validate', '-i', inputFile, '-o', outputFile]);
           await expectOutput({});
@@ -91,7 +91,9 @@ describe('Cli', () => {
 
       describe('1', () => {
         it('when --input file is invalid', async () => {
-          const rljson: Rljson = { tab_le: { _data: [], _type: 'properties' } };
+          const rljson: Rljson = {
+            tab_le: { _data: [], _type: 'ingredients' },
+          };
           await setInput(JSON.stringify(rljson));
           await run(['validate', '-i', inputFile, '-o', outputFile]);
           expectError(1, `Errors written to`);
@@ -99,9 +101,9 @@ describe('Cli', () => {
           await expectOutput({
             base: {
               hasErrors: true,
-              tableNamesNotLowerCamelCase: {
+              tableKeysNotLowerCamelCase: {
                 error: 'Table names must be lower camel case',
-                invalidTableNames: ['tab_le'],
+                invalidTableKeys: ['tab_le'],
               },
             },
           });

@@ -33,13 +33,13 @@ git pull
 
 ## Set pull request title
 
-Replace `Fix usage description` here and below
+Replace `Update to latest dependencies` here and below
 by your new pull request title.
 
 ## Create a feature branch
 
 ```bash
-node scripts/create-branch.js "Fix usage description"
+node scripts/create-branch.js "Update to latest dependencies"
 ```
 
 ## Update dependencies
@@ -65,7 +65,7 @@ In Vscode, press
 
 ```bash
 git add .
-git commit -am"Fix usage description"
+git commit -am"Update to latest dependencies"
 ```
 
 ## Increase version
@@ -96,7 +96,7 @@ node scripts/push-branch.js
 ## Create a pull request
 
 ```bash
-gh pr create --base main --title "Fix usage description" --body " "
+gh pr create --base main --title "Update to latest dependencies" --body " "
 ```
 
 ## Code review
