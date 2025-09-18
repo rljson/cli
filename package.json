@@ -1,6 +1,6 @@
 {
   "name": "@rljson/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "packageManager": "pnpm@10.6.2",
   "description": "The RLJSON command line interface",
   "homepage": "https://github.com/rljson/cli",
@@ -53,7 +53,7 @@
     "vitest-dom": "^0.1.1"
   },
   "dependencies": {
-    "@rljson/converter": "^0.0.19",
+    "@rljson/converter": "^0.0.20",
     "@rljson/hash": "^0.0.16",
     "@rljson/json": "^0.0.21",
     "@rljson/rljson": "^0.0.55",
