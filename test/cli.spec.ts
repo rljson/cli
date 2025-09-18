@@ -81,7 +81,7 @@ describe('Cli', () => {
     describe('exits with', () => {
       describe('0', () => {
         it('when input file is valid', async () => {
-          const rljson: Rljson = { table: { _data: [], _type: 'ingredients' } };
+          const rljson: Rljson = { table: { _data: [], _type: 'components' } };
           await setInput(JSON.stringify(rljson));
           await run(['validate', '-i', inputFile, '-o', outputFile]);
           await expectOutput({});
@@ -92,7 +92,7 @@ describe('Cli', () => {
       describe('1', () => {
         it('when --input file is invalid', async () => {
           const rljson: Rljson = {
-            tab_le: { _data: [], _type: 'ingredients' },
+            tab_le: { _data: [], _type: 'components' },
           };
           await setInput(JSON.stringify(rljson));
           await run(['validate', '-i', inputFile, '-o', outputFile]);
@@ -136,6 +136,178 @@ describe('Cli', () => {
         it('when some other error happens', async () => {
           await setInput('invalid json');
           await run(['validate', '-i', inputFile, '-o', outputFile]);
+          expectError(
+            2,
+            `Unexpected token 'i', "invalid json" is not valid JSON`,
+          );
+        });
+      });
+    });
+  });
+  describe('fromJSON', () => {
+    let inputFile = '';
+    let decomposeFile = '';
+    let outputFile = '';
+
+    beforeEach(async () => {
+      inputFile = join(tmp, 'input.json');
+      decomposeFile = join(tmp, 'decompose.json');
+      outputFile = join(tmp, 'output.json');
+      await createTmp();
+    });
+
+    const setInput = async (content: string) => {
+      await writeFile(inputFile, content);
+    };
+
+    const setDecompose = async (content: string) => {
+      await writeFile(decomposeFile, content);
+    };
+
+    const output = async () => {
+      return JSON.parse(await readFile(outputFile, 'utf8'));
+    };
+
+    const run = async (args: string[]) => {
+      process.argv = ['node', 'cli.js', ...args];
+      await cli.exec();
+    };
+
+    const expectError = (code: number, message: string) => {
+      expect(cli.exitCode).toBe(code);
+      expect(cli.errors.length).toBe(1);
+      expect(cli.errors[0].message).toContain(message);
+    };
+
+    const expectResult = (message: string) => {
+      expect(cli.result.length).toBe(1);
+      expect(cli.result[0]).toContain(message);
+    };
+    // .........................................................................
+
+    describe('exits with', () => {
+      describe('0', () => {
+        it('when input & decompose file is valid', async () => {
+          const json: Json = {
+            id: 'car1',
+            model: 'BMW',
+          };
+          const decompose: Json = {
+            _sliceId: 'id',
+            model: ['model'],
+          };
+
+          await setInput(JSON.stringify(json));
+          await setDecompose(JSON.stringify(decompose));
+
+          await run([
+            'fromJson',
+            '-i',
+            inputFile,
+            '-d',
+            decomposeFile,
+            '-o',
+            outputFile,
+          ]);
+          const res = await output();
+          expect(Object.keys(res)).toStrictEqual([
+            'sliceId',
+            'model',
+            'modelLayer',
+            'cake',
+          ]);
+          expectResult('Everything is fine.');
+        });
+      });
+
+      describe('1', () => {
+        it('when --input file is invalid', async () => {
+          const json: Json = {
+            id: 'car1',
+          };
+          const decompose: Json = {
+            _wrong: 'id',
+          };
+
+          await setInput(JSON.stringify(json));
+          await setDecompose(JSON.stringify(decompose));
+
+          await run([
+            'fromJson',
+            '-i',
+            inputFile,
+            '-d',
+            decomposeFile,
+            '-o',
+            outputFile,
+          ]);
+
+          expectError(1, `Errors written to`);
+          expectError(1, outputFile);
+
+          const result = await output();
+          expect(Object.keys(result)).toStrictEqual(['sliceId', 'cake']);
+        });
+      });
+
+      describe('2', async () => {
+        it('when --input is missing', async () => {
+          await run(['fromJson', '-o', outputFile]);
+          expectError(
+            2,
+            'Error: Input, decompose and output files must be specified.',
+          );
+        });
+
+        it('when --output is missing', async () => {
+          await run(['fromJson', '-i', inputFile]);
+          expect(cli.exitCode).toBe(2);
+          expect(cli.errors.map((e) => e.message)).toEqual([
+            'Error: Input, decompose and output files must be specified.',
+          ]);
+        });
+
+        it('when input file cannot be opened', async () => {
+          await run([
+            'fromJson',
+            '-i',
+            inputFile,
+            '-d',
+            decomposeFile,
+            '-o',
+            outputFile,
+          ]);
+          expectError(2, `Error: Input file not found`);
+          expectError(2, inputFile);
+        });
+
+        it('when input file cannot be opened', async () => {
+          setInput('{}');
+          await run([
+            'fromJson',
+            '-i',
+            inputFile,
+            '-d',
+            decomposeFile,
+            '-o',
+            outputFile,
+          ]);
+          expectError(2, `Error: Input Decompose Chart file not found`);
+          expectError(2, inputFile);
+        });
+
+        it('when some other error happens', async () => {
+          await setInput('invalid json');
+          await setDecompose('invalid json');
+          await run([
+            'fromJson',
+            '-i',
+            inputFile,
+            '-d',
+            decomposeFile,
+            '-o',
+            outputFile,
+          ]);
           expectError(
             2,
             `Unexpected token 'i', "invalid json" is not valid JSON`,
