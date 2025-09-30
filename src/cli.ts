@@ -149,20 +149,15 @@ export class Cli {
           const decompose = fs.readFileSync(options.decompose, 'utf8');
           const decomposeJson = JSON.parse(decompose);
 
-          const result = fromJson(datajson, decomposeJson);
+          try {
+            const result = fromJson(datajson, decomposeJson);
+            fs.writeFileSync(options.output, JSON.stringify(result, null, 2));
 
-          fs.writeFileSync(options.output, JSON.stringify(result, null, 2));
-
-          const noErrors = Object.keys(result).length > 2;
-          if (noErrors) {
             this._result.push(`Everything is fine.`);
             this._exit(0, undefined);
             return;
-          } else {
-            this._exit(
-              1,
-              new Error(`Errors written to: ${blue(options.output)}`),
-            );
+          } catch (error: any) {
+            this._exit(1, error);
             return;
           }
         } catch (error) {
