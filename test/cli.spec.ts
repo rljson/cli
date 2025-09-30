@@ -215,18 +215,25 @@ describe('Cli', () => {
             'model',
             'modelLayer',
             'cake',
+            'tableCfgs',
           ]);
           expectResult('Everything is fine.');
         });
       });
 
       describe('1', () => {
-        it('when --input file is invalid', async () => {
+        it('when --input or --decompose file is invalid', async () => {
           const json: Json = {
-            id: 'car1',
-          };
-          const decompose: Json = {
             _wrong: 'id',
+          };
+
+          const decompose: Json = {
+            wrong: 'id',
+            _types: [
+              {
+                name: 'cake',
+              },
+            ],
           };
 
           await setInput(JSON.stringify(json));
@@ -242,11 +249,7 @@ describe('Cli', () => {
             outputFile,
           ]);
 
-          expectError(1, `Errors written to`);
-          expectError(1, outputFile);
-
-          const result = await output();
-          expect(Object.keys(result)).toStrictEqual(['sliceId', 'cake']);
+          expectError(1, `If subtypes are defined, _name must be provided!`);
         });
       });
 
