@@ -271,7 +271,7 @@ describe('Cli', () => {
         });
 
         it('when input file cannot be opened', async () => {
-          setInput('{}');
+          await setDecompose('{something: true}');
           await run([
             'fromJson',
             '-i',
@@ -284,7 +284,7 @@ describe('Cli', () => {
           expectError(2, `Error: Input file not found: NotFound`);
         });
         it('when decompose file cannot be opened', async () => {
-          setInput('{something: true}');
+          await setInput('{something: true}');
           await run([
             'fromJson',
             '-i',
