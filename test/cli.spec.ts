@@ -271,34 +271,34 @@ describe('Cli', () => {
         });
 
         it('when input file cannot be opened', async () => {
+          await setDecompose('{something: true}');
           await run([
             'fromJson',
             '-i',
-            inputFile,
+            'NotFound',
             '-d',
             decomposeFile,
             '-o',
             outputFile,
           ]);
-          expectError(2, `Error: Input file not found`);
-          expectError(2, inputFile);
+          expectError(2, `Error: Input file not found: NotFound`);
         });
-
-        it('when input file cannot be opened', async () => {
-          setInput('{}');
+        it('when decompose file cannot be opened', async () => {
+          await setInput('{something: true}');
           await run([
             'fromJson',
             '-i',
             inputFile,
             '-d',
-            decomposeFile,
+            'NotFound',
             '-o',
             outputFile,
           ]);
-          expectError(2, `Error: Input Decompose Chart file not found`);
-          expectError(2, inputFile);
+          expectError(
+            2,
+            `Error: Input Decompose Chart file not found: NotFound`,
+          );
         });
-
         it('when some other error happens', async () => {
           await setInput('invalid json');
           await setDecompose('invalid json');
