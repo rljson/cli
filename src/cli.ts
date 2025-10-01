@@ -136,7 +136,7 @@ export class Cli {
               2,
               Error(
                 `Error: Input Decompose Chart file not found: ${blue(
-                  options.input,
+                  options.decompose,
                 )}`,
               ),
             );
