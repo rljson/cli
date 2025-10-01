@@ -289,14 +289,13 @@ describe('Cli', () => {
           await run([
             'fromJson',
             '-i',
-            inputFile,
+            'NotFound',
             '-d',
             decomposeFile,
             '-o',
             outputFile,
           ]);
-          expectError(2, `Error: Input Decompose Chart file not found`);
-          expectError(2, inputFile);
+          expectError(2, `Error: Input file not found: NotFound`);
         });
 
         it('when some other error happens', async () => {
